@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-scale=1.0">
     <link rel="stylesheet" href="{% static 'home/style.css' %}">
     <link rel="stylesheet" href="{% static 'catalog/style.css' %}">
     <title>Авторизация</title>
@@ -11,11 +11,20 @@
 <body>
     {% include 'home/header.html' %}
     <div class="login-form">
-        <form action="/login" method="POST">
-            <input type="text" placeholder="Введите почту">
-            <input type="password" placeholder="Введите пароль">
-            <button type="submit">Войти</BUtton>
-        </form>
+        {% if user.is_authenticated %}
+            <p>Добро пожаловать, {{ user.username }}!</p>
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Выйти</button>
+            </form>
+        {% else %}
+            <form action="/login/" method="POST">
+                {% csrf_token %}
+                <input name="username" placeholder="Введите почту" required>
+                <input name="password" placeholder="Введите пароль" required>
+                <button type="submit">Войти</button>
+            </form>
+        {% endif %}
     </div>
 </body>
 </html>
