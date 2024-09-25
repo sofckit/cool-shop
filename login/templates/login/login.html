@@ -15,14 +15,14 @@
             <p>Добро пожаловать, {{ user.username }}!</p>
             <form action="{% url 'logout' %}" method="POST">
                 {% csrf_token %}
-                <button type="submit">Выйти</button>
+                <button type="submit">Выйтяшка</button>
             </form>
         {% else %}
             <form action="/login/" method="POST">
                 {% csrf_token %}
-                <input name="username" placeholder="Введите почту" required>
-                <input name="password" placeholder="Введите пароль" required>
-                <button type="submit">Войти</button>
+                <input name="username" placeholder="Введите няшную почточку" required>
+                <input name="password" placeholder="Введите няшный парольчик" required>
+                <button type="submit">Войтишка</button>
             </form>
         {% endif %}
     </div>
